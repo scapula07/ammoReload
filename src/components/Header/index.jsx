@@ -2,8 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-ammo.png"
 import profile from "../../assets/profile.png"
+import { AccountState } from "../../recoil/globalState"
+import { useRecoilValue} from 'recoil';
 
 export default function Header({setTrigger}) {
+  const currentUser =useRecoilValue(AccountState)
+  console.log(currentUser?.email?.length,"header")
+
   return (
     <div className='w-full white'>
     <div className='flex items-center w-full justify-between'>
@@ -28,11 +33,29 @@ export default function Header({setTrigger}) {
 
                     </select>
              </div>
-
+               { currentUser?.email===undefined && 
                 <div onClick={()=>setTrigger(true)}>
                      <img src={profile}  className="w-10 h-10"/>
                     
                 </div>
+              }
+
+         {currentUser?.email !=undefined && 
+             <>
+             {currentUser?.profile? 
+                <div onClick={()=>setTrigger(true)}>
+                     <img src={profile}  className="w-10 h-10"/>
+                    
+                </div>
+
+                :
+                <div className='rounded-full w-12 h-12 text-white text-xl items-center justify-center flex' style={{background:"#F62121"}} >
+                       {currentUser?.email?.slice(0,1)} 
+                </div>
+              }
+              </>
+              }
+
 
           </main>
     

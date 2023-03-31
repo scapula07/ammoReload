@@ -11,9 +11,16 @@ export default function AdSpace() {
           </p>
         </div>
 
-        <div className='flex '>
+        <div className='flex space-x-8'>
             <main className='w-1/2'>
+                  <div className='relative w-full' >
+                     <img src={ads} className="w-full " />
 
+                     <main className='flex w-full justify-end -mt-14'> 
+                        <img src={ads} className="w-3/4" />
+
+                     </main>
+                   </div>
             </main>
              <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-2 gap-4 py-10 w-1/2'>
                 {[1,2,3,4,5,6,7,8].map(()=>{
@@ -49,7 +56,7 @@ export default function AdSpace() {
           </p>
         </div>
 
-        <div className='flex'>
+        <div className='flex space-x-8' >
                 <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-2 gap-4 py-10 w-1/2'>
                         {[1,2,3,4,5,6,7,8].map(()=>{
                             
@@ -73,9 +80,16 @@ export default function AdSpace() {
                         }
                     </main>
 
-                    <main className='w-1/2'>
+                 <main className='w-1/2'>
+                      <div className='relative w-full' >
+                        <img src={ads} className="w-full " />
 
-                     </main>
+                        <main className='flex w-full justify-end -mt-14'> 
+                            <img src={ads} className="w-3/4" />
+
+                        </main>
+                      </div>
+                </main>
 
         </div>
     </div>

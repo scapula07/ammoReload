@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil'
 import { useEffect,useState } from 'react'
 import { collection, onSnapshot, doc, getDocs, query, orderBy, limit } from 'firebase/firestore'
 import { db } from '../../firebase'
+import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 
 export default function Filter({setQuery}) {
 
@@ -14,6 +15,8 @@ export default function Filter({setQuery}) {
     const [ammo, setAmmo] = useState({})
     const [priceRange,setPrice]=useState([])
     
+    let count =6
+    let shipCount=6
 
     useEffect(() => {
         const getCollections = async () => {
@@ -64,6 +67,41 @@ export default function Filter({setQuery}) {
                  2A Warehouse
                 </option>
             </select>
+
+         </div>
+
+         <div className='w-full flex flex-col space-y-4 py-10'>
+            <h5 className='text-base font-semibold '>Ammo Star Rating</h5>
+            {[1,2,3,4,5].map(()=>{
+                 count=count - 1
+                 console.log(Array(count),"array count")
+                return(
+                    <div className='flex items-center space-x-2'>
+                        <input type="checkbox" /> 
+                        <main className='flex space-x-1 '>
+                            { Array(count).fill("1").map(()=>{
+                                 return(
+                                    <AiFillStar className='text-2xl' style={{color:"#F62121"}}/>
+                                 )
+                            })
+
+                            }
+                             { Array(5 - count).fill("1").map(()=>{
+                                 return(
+                                    <AiOutlineStar className='text-2xl font-extralight' />
+                                 )
+                            })
+
+                            }
+
+                        </main>
+                         
+                         <h5>{count} star</h5>
+                    </div>
+                )
+            })
+
+            }
 
          </div>
            
@@ -173,6 +211,46 @@ export default function Filter({setQuery}) {
                     </select>
 
                 </main>
+
+
+         <div className='w-full flex flex-col space-y-4 py-10'>
+            <h5 className='text-base font-semibold '>Shipping Rate</h5>
+            {[1,2,3,4,5].map(()=>{
+                 shipCount=shipCount - 1
+                
+                return(
+                    <div className='flex items-center space-x-2'>
+                        <input type="checkbox" /> 
+                        <main className='flex space-x-1 '>
+                            { Array(shipCount).fill("1").map(()=>{
+                                 return(
+                                    <AiFillStar className='text-2xl' style={{color:"#F62121"}}/>
+                                 )
+                            })
+
+                            }
+                             { Array(5 - shipCount).fill("1").map(()=>{
+                                 return(
+                                    <AiOutlineStar className='text-2xl font-extralight' />
+                                 )
+                            })
+
+                            }
+
+                        </main>
+                         
+                         <h5>{shipCount} star</h5>
+                    </div>
+                )
+            })
+
+            }
+
+         </div>
+
+         <main className='flex justify-center w-full text-white '> 
+            <button className='bg-blue-900 py-2 w-full text-sm'>View all results</button>
+         </main>
 
         </div>
 

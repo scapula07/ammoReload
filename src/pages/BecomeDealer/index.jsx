@@ -93,7 +93,7 @@ const Subscription=()=>{
 const Listing=({setTrigger})=>{
    return(
     
-    <div className='py-28 flex items-center  flex-col w-full'>
+    <div className='py-28 flex items-center  flex-col w-full px-20'>
       <div className='flex flex-col w-full  items-center w-3/5'>
         <h5 className='text-3xl font-bold'>This is what you need to list any ammo</h5>
         <p className='font-light text-xs text-center py-3 w-4/5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
@@ -103,8 +103,44 @@ const Listing=({setTrigger})=>{
                 <main className='grid grid-flow-row lg:grid-cols-4 grid-cols-2 gap-4 py-10 w-1/2 w-full'>
                 {[1,2,3,4,5,6,7,8,9,10].map(()=>{
                     return(
-                        <div className='' style={{background: "rgba(253, 211, 211, 0.5)"}}>
-                            <h5 className='text-blue-900 text-base font-semibold' style={{color: "#0F255C"}}>Listing Ammunitions</h5>
+                        <div className=''>
+                            <h5 className='text-blue-900 text-base font-semibold' style={{color: "#0F255C",background: "rgba(253, 211, 211, 0.5)"}}>Listing Ammunitions</h5>
+                                 <main className='flex flex-col'>
+                                    <h5 className='flex text-sm'>
+                                       <span>Your website </span>
+                                    </h5>
+
+                                    <h5 className='flex text-sm'>
+                                       <span> Product title</span>
+                                    </h5>
+
+                                    <h5 className='flex text-sm'>
+                                       <span>Product description </span>
+                                    </h5>
+                                    
+                                    <h5 className='flex text-sm'>
+                                       <span> Enter price range/price </span>
+                                    </h5>
+
+                                    <h5 className='flex text-sm'>
+                                       <span> Fill in shipping/ if you do </span>
+                                    </h5>
+
+
+                                    <h5 className='flex text-sm'>
+                                       <span> State out purchase </span>
+                                    </h5>
+
+                                    <h5 className='flex text-sm'>
+                                       <span> Enter number of rounds</span>
+                                    </h5>
+
+                                    <h5 className='flex text-sm'>
+                                       <span> Others</span>
+                                    </h5>
+
+
+                                </main>
 
                         </div>
                     )

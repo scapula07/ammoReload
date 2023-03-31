@@ -7,5 +7,5 @@ export const AmmosState = atom({
 
 export const AccountState =atom({
    key:"account",
-   default:""
+   default:{}
 })

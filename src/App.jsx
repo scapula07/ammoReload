@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -18,8 +18,42 @@ import Mags from './pages/Ammo/mags'
 import Bullets from './pages/Ammo/bullets'
 import Rimfire from './pages/Ammo/rimfire'
 
+import { onAuthStateChanged } from "firebase/auth"
+import { auth,db } from './firebase';
+import { doc,getDoc}  from "firebase/firestore";
+import { AccountState } from './recoil/globalState';
+import { useRecoilState } from 'recoil';
+
+
 function App() {
-  const [count, setCount] = useState(0)
+
+
+  const [currentUser,setcurrentUser]=useRecoilState(AccountState)
+
+
+
+  let authListner=null
+  useEffect( ()=>{
+  
+    authListner=onAuthStateChanged(auth,(user)=>{
+        if (user !== null) {
+            const uid = user.uid;
+          
+            const userRef =doc(db,"users", uid)
+           
+            getDoc(userRef).then(res=> {
+            console.log(res.exists(),"exist")
+            setcurrentUser({...res.data(),id:uid})
+       
+          })
+        }
+        })
+     return(
+      authListner()
+      )
+},[])
+    
+  console.log(currentUser,"currre")
 
   return (
     <div className="App">
