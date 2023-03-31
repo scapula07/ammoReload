@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-ammo.png"
 import profile from "../../assets/profile.png"
-import { AccountState } from "../../recoil/globalState"
+import { AccountState } from "../../Recoil/globalState"
 import { useRecoilValue} from 'recoil';
 
 export default function Header({setTrigger}) {

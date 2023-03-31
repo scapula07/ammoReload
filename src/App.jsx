@@ -21,7 +21,7 @@ import Rimfire from './pages/Ammo/rimfire'
 import { onAuthStateChanged } from "firebase/auth"
 import { auth,db } from './firebase';
 import { doc,getDoc}  from "firebase/firestore";
-import { AccountState } from './recoil/globalState';
+import { AccountState } from './Recoil/globalState';
 import { useRecoilState } from 'recoil';
 
 
