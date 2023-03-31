@@ -12,10 +12,10 @@ import Fuse from "fuse.js"
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { AmmosState } from '../../Recoil/globalState'
 import { useRecoilState } from 'recoil'
+import { Link,Outlet } from 'react-router-dom'
 
 
-
-const Banner=()=>{
+const Banner=({setTitle})=>{
     return(
       <div className='h-28 flex items-center px-20 '  style={{background:"#F62121"}} >
   
@@ -25,14 +25,13 @@ const Banner=()=>{
             <option>All AMMO</option>
           </select>
            
-            <h5>HANDGUN</h5>
-            <h5>RIFLE</h5>
-            <h5>RIMFIRE</h5>
-            <h5>SHOTGUN</h5>
-            <h5>RIMFIRE</h5>
-            <h5>GUNS</h5>
-            <h5>MAGAZINES</h5>
-            <h5>BULLETS</h5>
+           <Link to="handguns"> <h5 onClick={()=>setTitle("Handguns")}>HANDGUN</h5></Link>
+           <Link to="rifles"> <h5 onClick={()=>setTitle("Rifles")}>RIFLE</h5></Link>
+           <Link to="rimfire"><h5 onClick={()=>setTitle("Rimfire")}>RIMFIRE</h5></Link>
+           <Link to="shotguns"> <h5 onClick={()=>setTitle("Shotguns")}>SHOTGUN</h5> </Link>
+           <Link to=""><h5 onClick={()=>setTitle("Guns")}>GUNS</h5></Link>
+           <Link to="mags"> <h5 onClick={()=>setTitle("Magazines")}>MAGAZINES</h5></Link>
+           <Link to="bullets"> <h5 onClick={()=>setTitle("Bullets")}>BULLETS</h5></Link>
         </main>
         <main></main>
   
@@ -44,7 +43,7 @@ const Banner=()=>{
 
 
 
-  const Top=({searchQuery,setQuery,count})=>{
+  const Top=({searchQuery,setQuery,count,title})=>{
 
 
     return(
@@ -71,79 +70,13 @@ const Banner=()=>{
   
           </main>
            <main className='w-2/5 flex justify-end' >
-              <h5 className='text-3xl font-semibold ' >Total: {count} Guns</h5>
+              <h5 className='text-3xl font-semibold ' >Total: {count} {title}</h5>
   
           </main>
       </div>
     )
   }
 
-
-  const AmmoCard=({ ammo})=>{
-   
-    const img =ammo["img-src"]
-
-    return(
-      <div className='flex w-full bg-white shadow-lg space-x-4 ' >
-
-      <main className='w-1/4'>
-          <img src={img} className="h-full"/>
-          
-      </main>
-      <main className='w-3/4'> 
-        <div className='w-full flex justify-end'>
-          <button className='text-white px-4  py-1 text-xs' style={{background:" rgba(246, 33, 33, 1)",borderRadius: "0px 8px 8px 0px"}}>New Deal</button>
-           
-        </div>
-
-           <div className='flex flex-col w-full py-4 space-y-3'>
-
-                <main className='flex w-full items-center '>
-                   <div className='flex w-full items-center space-x-4'>
-                      <h5>{ammo?.name}</h5>
-
-                      <h5 className='flex items-center space-x-4'>
-                          <span className='text-slate-500'>
-                             Gunprime 
-                          </span>
-
-                          <span className='flex items-center space-x-1'>
-                              <AiFillStar  className='text-yellow-400'/>
-                             <span className=''> 5.0 </span>
-                          </span>
-                        
-
-                      </h5>
-                    
-                    </div>
-                    <h5 className='flex items-center px-4 space-x-4'>
-                          <FaShareAlt className='text-2xl'/> 
-                          <img src={flag}/>
-
-                   </h5>
-                     
-
-                  
-                </main>
-                 <p className='text-xs font-light'>{ammo?.description} </p>
-
-                 <div className='flex flex-col'>
-
-                 </div>
-                  <div className='border-t flex item-center w-full justify-between py-4 px-2'>
-                      <h5 className='text-slate-400 font-light text-sm '>Updated 3mins ago</h5>
-                      <h5  className=' font-semibold text-sm '>{ammo?.price}</h5>
-
-                  </div>
-
-
-           </div>
-
-      </main>
-
-  </div>
-    )
-  }
   
 
 export default function Ammo() {
@@ -152,6 +85,7 @@ export default function Ammo() {
     const [isLoading,setLoading]=useState(true)
 
     const [searchQuery,setQuery]=useState("")
+    const [title,setTitle]=useState("Guns")
 
 
     
@@ -190,10 +124,10 @@ export default function Ammo() {
 
         </div>
         <div className='py-10'>
-           <Banner />
+           <Banner setTitle={setTitle} />
         </div>
 
-        <Top setQuery={setQuery} searchQuery={searchQuery} count={ammoCollection?.length} />
+        <Top setQuery={setQuery} searchQuery={searchQuery} count={ammoCollection?.length} title={title}/>
 
         <div className='flex py-20 w-full  justify-between' > 
           <main className='px-20  w-4/12'>
@@ -201,51 +135,7 @@ export default function Ammo() {
           </main>
 
           <main className='w-3/5 px-20' > 
-             <div className='flex flex-col w-full space-y-10 overflow-y-scroll' style={{height:"200vh"}}>
-                {isLoading?
-                   <div className='w-full flex items-center justify-center'>
-                       <ScaleLoader  color="#F62121" loading={isLoading} />
-
-                   </div>
-                 :
-                 <>
-                {result.length ===0?
-                   <>
-                     {ammoCollection?.map((ammo)=>{
-                        return(
-                           <AmmoCard  ammo={ammo}/>
-
-                         )
-                       })
-
-                     }
-                   
-                   </>
-
-                   :
-
-                   <>
-                      {
-                         result?.map((ammo)=>{
-                             return(
-                               <AmmoCard  ammo={ammo?.item}/>
-   
-                          )
-
-                         })
-
-
-                      }
-
-                   </>
-
-                }
-                </>
-
-                }
-
-              </div>
-            
+             <Outlet context={[result,isLoading,ammoCollection]}/>
 
           </main>
 
