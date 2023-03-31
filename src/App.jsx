@@ -19,7 +19,7 @@ function App() {
     <div className="App">
         <Routes>
            <Route exact path="/"  element={ <Layout ><Home   /></Layout>} />
-           <Route  exact path="/dealer"  element={ <Layout ><Dealer   /></Layout>} />
+           <Route  exact path="/dealers"  element={ <Layout ><Dealer   /></Layout>} />
            <Route  exact path="/become-dealer"  element={ <Layout ><BecomeDealer   /></Layout>} />
            <Route  exact path="/listing"  element={ <Layout ><ListingDealers   /></Layout>} />
            <Route  exact path="/ammos"  element={ <Layout ><Ammo   /></Layout>} />

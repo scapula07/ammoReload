@@ -40,31 +40,53 @@ const Result=()=>{
   
 
   return(
-      <div className='flex items-center'>
-        <img src={result} className="rounded-full"/>
-        <main>
+      <div className='w-full'>
+         <div className='flex flex-col w-full'>
+                <div className='w-full flex justify-end'>
+                    <button className='text-white px-4  py-1 text-xs' style={{background:" rgba(246, 33, 33, 1)",borderRadius: "0px 8px 8px 0px"}}>New Deal</button>
+                  
+                  </div>
 
-        </main>
-         <main className='flex flex-col '>
-            <h5>Target Sport Factory USA</h5>
-            <p>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor.</p>
-            <div className='flex items-center'> 
-              <h5 className='flex items-center'>
-                 <AiFillStar className='text-yellow-400 text-xs'/>
-                 <span className=''>5.0</span>
+                  <div className='flex space-x-4'>
+                     <img src={result} className="rounded-full w-20 h-20"/>
 
-              </h5>
-           </div> 
+                     <main className='flex w-full justify-between'>
+                           
+                     <main className='flex flex-col '>
+                          <h5>Target Sport Factory USA</h5>
+                            <p>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor.</p>
+                           <div className='flex items-center'> 
+                             <h5 className='flex items-center'>
+                              <AiFillStar className='text-yellow-400 text-xs'/>
+                              <span className=''>5.0</span>
 
-        </main>
+                            </h5>
+                        </div> 
 
-        <main className='flex items-center'>
-            <FaShareAlt />
-            <img src={flag}/>
+                      </main>
 
-        </main>
 
-      </div>
+                      <main className='flex items-center'>
+                          <FaShareAlt />
+                         <img src={flag}/>
+
+                     </main>
+
+                     </main>
+
+
+
+                  </div>
+
+
+
+
+
+
+
+
+         </div>
+       </div>
   )
 }
 
@@ -75,13 +97,13 @@ export default function Ammo() {
     <div className='w-full px-20 py-8'> 
         <Top />
        
-        <div className='flex py-8 space-x-10' >
-             <main className='w-full w-1/5'>
+        <div className='flex py-8 space-x-10 w-full space-x-20' >
+             <main className=' w-3/12'>
                 <Filter />
 
 
              </main>
-             <main className='w-3/5 flex flex-col space-y-4 items-center'>
+             <main className='w-fullflex flex-col space-y-4 items-center space-y-8 '>
               {[1,2,3,4,5,6,7,8].map(()=>{
                  return(
                    <Result />
@@ -91,9 +113,7 @@ export default function Ammo() {
               }
 
              </main>
-             <main className='w-1/5'>
-
-             </main>
+            
 
         </div>
 

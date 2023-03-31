@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import pic1 from "../../assets/pic4.png"
 import pic4 from "../../assets/pic1.png"
 import pic2 from "../../assets/pic2.png"
@@ -11,6 +11,9 @@ import  bullet from "../../assets/bullet.png"
 import dealerPic from "../../assets/resultImg.png"
 import {AiFillStar} from "react-icons/ai"
 import "./home.css"
+import Modal from '../../components/Modal'
+import {AiOutlineClose} from "react-icons/ai"
+
 
 const TopPart=()=>{
     return(
@@ -153,7 +156,14 @@ const TopDealers=()=>{
 }
 
 export default function Home() {
+
+   const [trigger,setTrigger]=useState(true)
+   const [signUptrigger,setSignUpTrigger]=useState(false)
+   
+
   return (
+
+      <>
        <div className='w-full '>
         <TopPart />
         <div className='py-20 flex justify-center'>
@@ -165,5 +175,55 @@ export default function Home() {
             <TopDealers />
 
     </div>
+     
+      <Modal trigger={trigger} cname=" w-1/2 rounded-sm py-10 px-20" >
+            <main className='flex justify-end w-full'>
+            
+                <button onClick={()=>setTrigger(false)}><AiOutlineClose className="text-md font-thin" /></button>
+            </main>
+
+            <div className='w-full flex flex-col items-center justify-center'>
+                <main >
+                <h5 className='font-semibold text-3xl'>Verify Your Age</h5>
+                <p className='text-sm font-light py-4 w-3/4'>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor. Turpis potenti mauris lectus viverra euismod non velit et. Eu dictum .</p>
+                </main> 
+
+                 <div className='flex flex-col w-full space-y-4'>
+                    <main className='flex flex-col w-full space-y-2'>
+                       <label>Birth Year</label>
+                       <select className='w-full py-3 border px-2 rounded-md text-slate-400'>
+                          <option>2000</option>
+                         </select>
+
+                    </main>
+                    <main className='flex flex-col w-full space-y-2'>
+                       <label>Birth Month</label>
+                       <select className='w-full py-3 border px-2 rounded-md text-slate-400'>
+                          <option>2000</option>
+                         </select>
+
+                    </main>
+
+                    <main className='flex flex-col w-full space-y-2'>
+                       <label>Birth Day</label>
+                        <input  placeholder='Site URL' className='w-full py-2 border px-2 rounded-md' />
+
+                    </main>
+
+                    <main className='w-full  '>
+                         <button className='w-full bg-blue-900  text-white py-4 rounded-md '>Continue</button>
+                    </main>
+
+                 </div>
+            </div>
+
+     </Modal>
+
+
+      {/* <Modal trigger={signUptrigger} cname=" w-1/2 rounded-sm py-10 px-20">
+
+     </Modal> */}
+
+     </>
   )
 }

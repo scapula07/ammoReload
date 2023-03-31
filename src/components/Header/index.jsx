@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-ammo.png"
 import profile from "../../assets/profile.png"
 
-export default function Header() {
+export default function Header({setTrigger}) {
   return (
     <div className='w-full white'>
     <div className='flex items-center w-full justify-between'>
@@ -29,7 +29,7 @@ export default function Header() {
                     </select>
              </div>
 
-                <div>
+                <div onClick={()=>setTrigger(true)}>
                      <img src={profile}  className="w-10 h-10"/>
                     
                 </div>
