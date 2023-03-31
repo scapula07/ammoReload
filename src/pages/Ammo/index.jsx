@@ -112,10 +112,11 @@ export default function Ammo() {
 
   
   const fuse =new Fuse(ammoCollection,{
-    keys:["name","actionType","manufacturer"]
+    keys:["name","actionType","manufacturer","price"]
   })
 
   const result=fuse.search(searchQuery)
+  console.log(result,"result")
    
   return (
     <div className='w-full'>
@@ -131,7 +132,7 @@ export default function Ammo() {
 
         <div className='flex py-20 w-full  justify-between' > 
           <main className='px-20  w-4/12'>
-            <Filter />
+            <Filter  setQuery={setQuery} searchQuery={searchQuery}/>
           </main>
 
           <main className='w-3/5 px-20' > 

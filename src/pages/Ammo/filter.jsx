@@ -6,12 +6,14 @@ import { useEffect,useState } from 'react'
 import { collection, onSnapshot, doc, getDocs, query, orderBy, limit } from 'firebase/firestore'
 import { db } from '../../firebase'
 
-export default function Filter() {
+export default function Filter({setQuery}) {
 
     const [manufacturer,setManufacturers] =useState([])
     const [actionType,setType]=useState([])
     const [ammoCollection, setAmmoCollection] = useState([])
     const [ammo, setAmmo] = useState({})
+    const [priceRange,setPrice]=useState([])
+    
 
     useEffect(() => {
         const getCollections = async () => {
@@ -19,29 +21,29 @@ export default function Filter() {
           const querySnapshot = await getDocs(q);
           const manufacturer= []
           const actionType=[]
-          // console.log(querySnapshot)
+          const price=[]
+        
           querySnapshot.docs.map((doc) => {
-            // console.log(doc.data())
+           
             manufacturer.push(doc.data().manufacturer)
             actionType.push(doc.data().actionType)
-           
+            price.push(doc.data().price)
     
     
           })
-        //   setAmmoCollection( ammoList)
+       
         setManufacturers([...new Set(manufacturer)])
         setType([...new Set(actionType)])
+        setPrice([...new Set(price)])
 
          
         }
         getCollections()
       }, [])
     
-      console.log(manufacturer,"ammofilter")
-      console.log( actionType,"ammofilter")
+     console.log(priceRange,"price")
 
-
-
+    console.log(filter,"filter search")
 
     
 
@@ -54,7 +56,7 @@ export default function Filter() {
             <h5 className='text-base font-semibold  '>Filter</h5>
 
         </div>
-
+  
         <div className='w-full flex flex-col space-y-4 py-10'>
             <h5 className='text-base font-semibold '>Dealers (120 onboard)</h5>
             <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400'>
@@ -69,23 +71,38 @@ export default function Filter() {
         <div className='w-full flex flex-col '>
                <main className='w-full flex flex-col space-y-4 py-10'>
                     <h5 className='text-base font-semibold '>Price  Range</h5>
-                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400'>
-                        <option>
-                         Popular
-                        </option>
+                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400' onChange={(e)=>setQuery(e.target.value)}>
+                    {priceRange.map((price)=>{
+                           
+                                
+                            return(
+                                <option value={price} >
+                                  
+                                     {price}
+                                   
+                                
+                               </option>
+
+                            )
+                        })
+                        
+                         } 
                     </select>
 
                 </main>
 
                 <main className='w-full flex flex-col space-y-4 py-10'>
                     <h5 className='text-base font-semibold '>Brand</h5>
-                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400'>
+                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400' onChange={(e)=>setQuery(e.target.value)}>
                         {manufacturer.map((manufacturer)=>{
                             // console.log(ammo.manufacturer,"manu")
                                 
                             return(
-                                <option>
-                                  {manufacturer}
+                                <option value={manufacturer} >
+                                  
+                                     {manufacturer}
+                                   
+                                
                                </option>
 
                             )
@@ -109,7 +126,7 @@ export default function Filter() {
 
                 <main className='w-full flex flex-col space-y-4 py-10'>
                     <h5 className='text-base font-semibold '>Action Type</h5>
-                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400'>
+                    <select className='text-xs border w-full py-3 px-3 rounded-md text-slate-400' onChange={(e)=>setQuery(e.target.value)}>
                     {actionType.map((type)=>{
                             // console.log(ammo.manufacturer,"manu")
                                 
