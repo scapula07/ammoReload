@@ -80,7 +80,9 @@ export default function Layout({children}) {
       
           const payload={email,name}
           console.log(await setDoc(userRef,payload))
-          uid.length >0&& navigate('/')
+          console.log(uid,"uid")
+          // uid.length >0&& navigate('/')
+             uid.length >0&& setTrigger
      }catch(e){
        
          setLoading(false)
@@ -154,7 +156,7 @@ console.log(errors,"err")
                    
       </div>
 
-      <Modal trigger={trigger}  cname=" w-1/2 rounded-sm py-10 px-20">
+      <Modal trigger={trigger}  cname=" lg:w-1/2 w-11/12 rounded-sm py-10 lg:px-20 px-6">
            {isLogIn?
 
 
@@ -165,15 +167,15 @@ console.log(errors,"err")
 
                <main className='w-full flex flex-col justify-center items-center space-y-3'>
                   <main className='flex flex-col  space-y-3'>
-                      <h5 className='text-3xl font-semibold'>Log In</h5>
-                      <p className='text-sm font-light w-5/6'>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor. Turpis potenti mauris lectus viverra euismod non velit et. Eu dictum .</p>
+                      <h5 className='text-3xl text-xl font-semibold'>Log In</h5>
+                      <p className='text-sm font-light lg:w-5/6'>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor. Turpis potenti mauris lectus viverra euismod non velit et. Eu dictum .</p>
                    </main>
 
                    <div className='flex flex-col w-full space-y-4'>
                 
 
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>Email Address</label>
+                       <label className='lg:text-normal text-sm' >Email Address</label>
                        <input   className='w-full py-2 border px-2 rounded-md' 
                                 value={email}
                                 name="email"
@@ -185,7 +187,7 @@ console.log(errors,"err")
                     </main>
 
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>Password</label>
+                       <label className='lg:text-normal text-sm'>Password</label>
                        <input  className='w-full py-2 border px-2 rounded-md'
                              onChange={(e)=>setPassword(e.target.value)}
                              name="password"
@@ -228,14 +230,14 @@ console.log(errors,"err")
 
               <main className='w-full flex flex-col justify-center items-center space-y-3'>
                  <main className='flex flex-col  space-y-3'>
-                 <h5 className='text-3xl font-semibold'>Sign Up</h5>
-                 <p className='text-sm font-light w-5/6'>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor. Turpis potenti mauris lectus viverra euismod non velit et. Eu dictum .</p>
+                 <h5 className='lg:text-3xl text-xl font-semibold'>Sign Up</h5>
+                 <p className='text-sm font-light lg:w-5/6 w-full'>Lorem ipsum dolor sit amet consectetur. Morbi facilisi eget lobortis ut mattis auctor. Turpis potenti mauris lectus viverra euismod non velit et. Eu dictum .</p>
                  </main>
 
 
                  <div className='flex flex-col w-full space-y-4'>
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>First Name</label>
+                       <label className='lg:text-normal text-sm'>First Name</label>
                        <input  className='w-full py-2 border px-2 rounded-md' 
                           value={name.firstName}
                          onChange={(e)=>setName({firstName:e.target.value})}
@@ -243,7 +245,7 @@ console.log(errors,"err")
 
                     </main>
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>Last Name</label>
+                       <label className='lg:text-normal text-sm'>Last Name</label>
                        <input   className='w-full py-2 border px-2 rounded-md' 
                           value={name.lastName}
                           onChange={(e)=>setName({LastName:e.target.value})}
@@ -252,7 +254,7 @@ console.log(errors,"err")
                     </main>
 
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>Email Address</label>
+                       <label className='lg:text-normal text-sm'>Email Address</label>
                        <input className='w-full py-2 border px-2 rounded-md' 
                                  value={email}
                                  name="email"
@@ -264,7 +266,7 @@ console.log(errors,"err")
                     </main>
 
                     <main className='flex flex-col w-full space-y-2'>
-                       <label>Password</label>
+                       <label className='lg:text-normal text-sm'>Password</label>
                        <input  className='w-full py-2 border px-2 rounded-md' 
                             onChange={(e)=>setPassword(e.target.value)}
                             name="password"
@@ -282,7 +284,7 @@ console.log(errors,"err")
                     </main>
 
                     <main className='w-full  '>
-                         <button className='w-full bg-blue-900  text-white py-4 rounded-md flex items-center justify-center' onClick={signUpWithEmail}>
+                         <button className='w-full bg-blue-900  text-white py-4 rounded-md flex items-center justify-center lg:text-normal text-sm ' onClick={signUpWithEmail}>
                                {loading&&<ClipLoader color="white" loading={loading}/>}
                       
                                {!loading&&  <span>Sign up</span>}

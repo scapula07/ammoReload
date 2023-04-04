@@ -3,16 +3,16 @@ import ads from "../../assets/adsPic.png"
 
 export default function AdSpace() {
   return (
-    <div className='w-full  px-20'>
-        <div className='w-full'>
-           <h5 className='text-3xl font-bold'> Check out our Ads space reservations</h5>
-           <p className='w-3/4 py-10'>
+    <div className='w-full  lg:px-20 px-6'>
+        <div className='w-full flex flex-col items-center lg:block'>
+           <h5 className='lg:text-3xl text-2xl font-bold'> Check out our Ads space reservations</h5>
+           <p className='lg:w-3/5 py-10 w-full'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
           </p>
         </div>
 
-        <div className='flex space-x-8'>
-            <main className='w-1/2'>
+        <div className='flex lg:flex-row flex-col lg:space-x-8'>
+            <main className='lg:w-1/2'>
                   <div className='relative w-full' >
                      <img src={ads} className="w-full " />
 
@@ -22,7 +22,7 @@ export default function AdSpace() {
                      </main>
                    </div>
             </main>
-             <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-2 gap-4 py-10 w-1/2'>
+             <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-1 gap-4 py-10 lg:w-1/2  px-8 lg:px-0'>
                 {[1,2,3,4,5,6,7,8].map(()=>{
                     
                     return(
@@ -50,14 +50,14 @@ export default function AdSpace() {
 
 
         <div className='w-full py-20'>
-           <h5 className='text-3xl font-bold'> Check out our Ads space reservations</h5>
-           <p className='w-3/4 py-10'>
+           <h5 className='lg:text-3xl text-2xl font-bold'> Check out our Ads space reservations</h5>
+           <p className='lg:w-3/5 py-10 w-full'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
           </p>
         </div>
 
-        <div className='flex space-x-8' >
-                <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-2 gap-4 py-10 w-1/2'>
+        <div className='flex lg:flex-row flex-col lg:space-x-8 space-y-16' >
+                <main className='grid grid-flow-row lg:grid-cols-2 grid-cols-1 px-8 lg:px-0 gap-4 lg:py-10 lg:w-1/2'>
                         {[1,2,3,4,5,6,7,8].map(()=>{
                             
                             return(
@@ -80,7 +80,7 @@ export default function AdSpace() {
                         }
                     </main>
 
-                 <main className='w-1/2'>
+                 <main className='lg:w-1/2'>
                       <div className='relative w-full' >
                         <img src={ads} className="w-full " />
 

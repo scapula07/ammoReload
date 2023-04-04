@@ -176,7 +176,7 @@ export default function Home() {
   return (
 
       <>
-       <div className='w-full '>
+       <div className='w-full py-8 lg:py-0'>
           <TopPart />
           <div className='lg:py-20 pt-10 pb-20 flex justify-center'>
             <button className='text-white lg:w-72 w-64 py-4 lg:text-base text-sm font-light rounded-md' style={{background:"#0F255C"}}>Start searching</button>

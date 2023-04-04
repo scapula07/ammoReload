@@ -4,25 +4,27 @@ import {MdCheck} from "react-icons/md"
 import AdSpace from './adSpace'
 import Modal from '../../components/Modal'
 import {AiOutlineClose} from "react-icons/ai"
+import { Link } from 'react-router-dom'
 
 
 
 
-const TopPart=()=>{
+const TopPart=({setTrigger})=>{
+   
     return(
-        <div className='w-full flex px-20 justify-between'>
-             <main className='w-1/2'>
-                <h5 className='text-4xl font-bold ' style={{color: "#3F3F46"}}>Check out How you can list your website/product</h5>
-                 <p className='font-light text-xs py-10'>
+        <div className='w-full flex lg:flex-row flex-col-reverse lg:px-20 px-6 lg:justify-between'>
+             <main className='lg:w-1/2 w-full py-8 lg:py-0'>
+                <h5 className='lg:text-4xl text-2xl font-bold ' style={{color: "#3F3F46"}}>Check out How you can list your website/product</h5>
+                 <p className='font-light text-xs lg:py-10 pt-6 pb-10'>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
                  </p>
-                 
-            <button className='text-white w-72 py-4 text-base font-light rounded-md' style={{background:"#0F255C"}}>Become a dealer</button>
-              
+     
+            <button className='text-white w-72 py-4 text-base font-light rounded-md' style={{background:"#0F255C"}} onClick={()=>setTrigger(true)}>Become a dealer</button>
+           
 
              </main>
-             <main className='w-1/2 justify-end flex'>
-                <img src={revover} className="w-96 h-96" />
+             <main className='lg:w-1/2 w-full lg:justify-end justify-center flex'>
+                <img src={revover} className="lg:w-96 lg:h-96 h-56 w-56" />
 
              </main>
 
@@ -33,17 +35,17 @@ const TopPart=()=>{
 
 const Subscription=()=>{
     return(
-        <div className='py-28 flex items-center  flex-col '>
-             <div className='flex flex-col w-full  items-center w-2/5'>
-                 <h5 className='text-3xl font-bold'>This is our subscription plans</h5>
-                 <p className='font-light text-xs text-center py-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.</p>
+        <div className='lg:py-28 py-10 flex items-center  flex-col px-6 lg:px-0'>
+             <div className='flex flex-col w-full  lg:items-center lg:w-2/5'>
+                 <h5 className='lg:text-3xl text-2xl font-bold '>This is our subscription plans</h5>
+                 <p className='font-light text-xs lg:text-center py-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.</p>
 
              </div>
 
-             <div className='w-full flex justify-center  py-10 items-center'>
+             <div className='w-full flex lg:flex-row flex-col justify-center  py-10 items-center'>
                 {[1,2,3].map(()=>{
                     return( 
-                         <div className='  h-72  w-1/6 rounded-lg hover:h-96 hover:bg-blue-900 py-8 hover:text-white hover:shadow-blue-900' style={{border: "1px solid #0F255C"}}>
+                         <div className='  lg:h-72 h-96 lg:w-1/6 w-4/6 rounded-lg hover:h-96 hover:bg-blue-900 py-8 hover:text-white hover:shadow-blue-900' style={{border: "1px solid #0F255C"}}>
                              <div className='flex flex-col items-center space-y-4'>
                                  <h5 className='text-l font-semibold'>DAILY</h5>
                                  <h5 className='flex space-x-2 items-center'>
@@ -93,14 +95,14 @@ const Subscription=()=>{
 const Listing=({setTrigger})=>{
    return(
     
-    <div className='py-28 flex items-center  flex-col w-full px-20'>
+    <div className='py-28 flex items-center  flex-col w-full lg:px-20 px-6'>
       <div className='flex flex-col w-full  items-center w-3/5'>
-        <h5 className='text-3xl font-bold'>This is what you need to list any ammo</h5>
-        <p className='font-light text-xs text-center py-3 w-4/5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
+        <h5 className='lg:text-3xl text-2xl font-bold'>This is what you need to list any ammo</h5>
+        <p className='font-light text-xs lg:text-center py-3 lg:w-4/5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ps ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
         </p>
         </div>
         <div className='flex flex-col  w-full items-center' >
-                <main className='grid grid-flow-row lg:grid-cols-4 grid-cols-2 gap-4 py-10 w-1/2 w-full'>
+                <main className='grid grid-flow-row lg:grid-cols-4 grid-cols-1 gap-4 py-10  w-full px-8 lg:px-0'>
                 {[1,2,3,4,5,6,7,8,9,10].map(()=>{
                     return(
                         <div className=''>
@@ -149,7 +151,7 @@ const Listing=({setTrigger})=>{
              
                  
                </main>
-               <button className='bg-blue-900 text-white rounded-md py-3 px-10' onClick={()=>setTrigger(true)}> Become a dealer</button>
+               <button className='bg-blue-900 text-white rounded-md py-3 px-10 text-sm lg:text-normal' onClick={()=>setTrigger(true)}> Become a dealer</button>
 
         </div>
   
@@ -166,15 +168,15 @@ export default function BecomeDealer() {
     const [trigger,setTrigger]=useState(false)
   return (
     <>
-    <div className='w-full'>
-        <TopPart />
+    <div className='w-full py-10 lg:py-0'>
+        <TopPart setTrigger={setTrigger} />
         <Subscription />
         <AdSpace />
         <Listing setTrigger={setTrigger}/>
 
         
     </div>
-       <Modal trigger={trigger} cname=" w-11/12  rounded-sm py-10 px-20">
+       <Modal trigger={trigger} cname=" w-11/12  rounded-sm py-10 lg:px-20 px-6">
                 <main className='flex justify-end w-full'>
                    
                     <button onClick={()=>setTrigger(false)}><AiOutlineClose className="text-md font-thin" /></button>
@@ -226,6 +228,16 @@ export default function BecomeDealer() {
                          </p>
                      </div>
 
+                     </div>
+
+                     <div className='flex flex-col items-center space-x-4 w-full space-y-4'>
+                        <main className='flex items-center space-x-4 justify-center w-full'>
+                            <input type="checkbox" />
+                            <h5 className='text-xs'>I have read and understood the whole terms and co ndition</h5>
+                        </main>
+                        <Link to="/listing">
+                        <button className='bg-blue-900 text-white rounded-md py-3 px-10 text-sm lg:text-normal'> Become a dealer</button>
+                        </Link>
                      </div>
 
 
