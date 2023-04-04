@@ -142,7 +142,7 @@ console.log(errors,"err")
               <Header setTrigger={setTrigger}/>
             </div>
             
-          <div className=" py-32 h-full" >
+          <div className=" lg:py-32 py-20 h-full" >
               {children}
             </div>
   

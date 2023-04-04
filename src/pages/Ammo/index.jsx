@@ -3,6 +3,7 @@ import ammoImg from "../../assets/ammoHero.png"
 import {BsSearch} from "react-icons/bs"
 import Filter from './filter'
 import ammoItem  from "../../assets/ammoItem.png"
+import mobile  from "../../assets/mobile.png"
 import {AiFillStar} from "react-icons/ai"
 import {FaShareAlt} from "react-icons/fa"
 import flag from "../../assets/flag.png"
@@ -17,13 +18,13 @@ import { Link,Outlet } from 'react-router-dom'
 
 const Banner=({setTitle})=>{
     return(
-      <div className='h-28 flex items-center px-20 '  style={{background:"#F62121"}} >
+      <div className='h-28 flex items-center lg:px-20 px-10'  style={{background:"#F62121"}} >
   
-        <main className='flex items-center text-white space-x-10'>
+        <main className='flex items-center text-white space-x-10 overflow-x-scroll py-4 lg:py-0'>
           
             <select style={{background:"#F62121"}} >
             <option>All AMMO</option>
-          </select>
+            </select>
            
            <Link to="handguns"> <h5 onClick={()=>setTitle("Handguns")}>HANDGUN</h5></Link>
            <Link to="rifles"> <h5 onClick={()=>setTitle("Rifles")}>RIFLE</h5></Link>
@@ -47,9 +48,9 @@ const Banner=({setTitle})=>{
 
 
     return(
-      <div className='w-full flex items-center px-20'>
-          <main className='flex items-center w-3/5 space-x-12'>
-              <div className='flex border items-center w-1/2  px-4 py-2 rounded-md space-x-4' style={{border: "1px solid #D4D4D8"}}>
+      <div className='w-full flex lg:flex-row flex-col-reverse items-center lg:px-20 '>
+          <main className='flex lg:flex-row flex-col items-center lg:w-3/5 w-full px-6 lg:px-0 lg:space-x-12 py-4 lg:py-0 space-y-4 lg:space-y-0'>
+              <div className='flex border items-center  lg:w-1/2 w-full px-4 py-2 rounded-md lg:space-x-4' style={{border: "1px solid #D4D4D8"}}>
                 <BsSearch className='text-slate-500' />
                 <input placeholder='Start searching...'
                     value={searchQuery}
@@ -59,7 +60,7 @@ const Banner=({setTitle})=>{
   
               </div>
   
-              <div className='flex'>
+              <div className='flex w-full justify-end lg:justify-start'>
                   <h5 style={{color:"#71717A"}}>Sort by:</h5>
                   <select className='outline-none' style={{color:"#71717A"}}>
                      <option>Latest</option>
@@ -69,8 +70,8 @@ const Banner=({setTitle})=>{
   
   
           </main>
-           <main className='w-2/5 flex justify-end' >
-              <h5 className='text-3xl font-semibold ' >Total: {count} {title}</h5>
+           <main className='lg:w-2/5 w-full  flex lg:justify-end justify-center' >
+              <h5 className='lg:text-3xl text-xl font-semibold ' >Total: {count} {title}</h5>
   
           </main>
       </div>
@@ -120,8 +121,9 @@ export default function Ammo() {
    
   return (
     <div className='w-full'>
-        <div className=''>
-            <img src={ammoImg}/>
+        <div className='w-full'>
+            <img src={ammoImg} className="sm:block hidden w-full"/>
+            <img src={mobile} className="sm:hidden block w-full"/>
 
         </div>
         <div className='py-10'>
@@ -130,12 +132,12 @@ export default function Ammo() {
 
         <Top setQuery={setQuery} searchQuery={searchQuery} count={ammoCollection?.length} title={title}/>
 
-        <div className='flex py-20 w-full  justify-between' > 
-          <main className='px-20  w-4/12'>
-            <Filter  setQuery={setQuery} searchQuery={searchQuery}/>
+        <div className='flex lg:flex-row flex-col  lg:py-20  w-full  lg:justify-between' > 
+          <main className=' lg:px-20  px-6 lg:w-4/12 w-full pb-20'>
+              <Filter  setQuery={setQuery} searchQuery={searchQuery}/>
           </main>
 
-          <main className='w-3/5 px-20' > 
+          <main className='lg:w-3/5 w-full lg:px-20 px-6'  > 
              <Outlet context={[result,isLoading,ammoCollection]}/>
 
           </main>

@@ -1,3 +1,12 @@
 .top-h{
     height: 700px;
 }
+
+
+
+
+@media screen and (max-width: 480px){
+    .top-h{
+        height: 900px;
+    }
+}

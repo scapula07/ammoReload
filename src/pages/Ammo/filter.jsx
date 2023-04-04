@@ -54,11 +54,16 @@ export default function Filter({setQuery}) {
   
   return (
     <div className='w-full'>  
-        <div className='flex items-center border w-36 justify-center space-x-4 py-2 rounded-md'>
-            <img src={filter} />
-            <h5 className='text-base font-semibold  '>Filter</h5>
+       <main className='flex justify-end w-full lg:block'>
+                <div className='flex items-center border w-36 justify-center space-x-4 py-2 rounded-md '>
+                    <img src={filter} />
 
-        </div>
+                    <h5 className='text-base font-semibold  '>Filter</h5>
+
+                </div>
+        </main>
+
+        <div className='w-full lg:block hidden'>
   
         <div className='w-full flex flex-col space-y-4 py-10'>
             <h5 className='text-base font-semibold '>Dealers (120 onboard)</h5>
@@ -252,6 +257,7 @@ export default function Filter({setQuery}) {
             <button className='bg-blue-900 py-2 w-full text-sm'>View all results</button>
          </main>
 
+        </div>
         </div>
 
     </div>

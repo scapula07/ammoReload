@@ -17,6 +17,7 @@ const AmmoCard=({ ammo})=>{
 
       <main className='w-1/4'>
           <img src={img} className="h-full"/>
+              <img src={img} className="h-full"/>
           
       </main>
       <main className='w-3/4'> 
