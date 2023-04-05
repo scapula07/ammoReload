@@ -96,7 +96,9 @@ export default function Guns() {
        <>
          {ammoCollection?.map((ammo)=>{
             return(
+              <a href={ammo["product-href"]}>
                <AmmoCard  ammo={ammo}/>
+               </a>
 
              )
            })
@@ -111,8 +113,9 @@ export default function Guns() {
           {
              result?.map((ammo)=>{
                  return(
+                  <a href={ammo?.item["product-href"]}>
                    <AmmoCard  ammo={ammo?.item}/>
-
+                   </a>
               )
 
              })

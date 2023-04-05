@@ -44,8 +44,8 @@ const Banner=({setTitle})=>{
 
 
 
-  const Top=({searchQuery,setQuery,count,title})=>{
-
+  const Top=({searchQuery,setQuery,count,title,bulletCount})=>{
+      console.log(title,"count")
 
     return(
       <div className='w-full flex lg:flex-row flex-col-reverse items-center lg:px-20 '>
@@ -71,8 +71,12 @@ const Banner=({setTitle})=>{
   
           </main>
            <main className='lg:w-2/5 w-full  flex lg:justify-end justify-center' >
-              <h5 className='lg:text-3xl text-xl font-semibold ' >Total: {count} {title}</h5>
-  
+                {title==="bullets" ?
+                  <h5 className='lg:text-3xl text-xl font-semibold ' >Total: {bulletCount} {title}</h5>
+                :
+                <h5 className='lg:text-3xl text-xl font-semibold ' >Total: {count} {title}</h5>
+                
+                   }
           </main>
       </div>
     )
@@ -146,7 +150,7 @@ export default function Ammo() {
            <Banner setTitle={setTitle} />
         </div>
 
-        <Top setQuery={setQuery} searchQuery={searchQuery} count={ammoCollection?.length} title={title}/>
+        <Top setQuery={setQuery} searchQuery={searchQuery} count={ammoCollection?.length} bulletCount={bulletCollection?.length} title={title}/>
 
         <div className='flex lg:flex-row flex-col  lg:py-20  w-full  lg:justify-between' > 
           <main className=' lg:px-20  px-6 lg:w-4/12 w-full pb-20'>
