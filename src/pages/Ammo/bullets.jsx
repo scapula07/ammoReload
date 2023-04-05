@@ -80,7 +80,55 @@ const AmmoCard=({ ammo})=>{
 
 
 export default function Bullets() {
-  return (
-    <div>bullets</div>
-  )
+
+    const [result,isLoading,ammoCollection,bulletCollection]= useOutletContext();
+    console.log(bulletCollection.length,"length bullet")
+    return (
+      <div className='flex flex-col w-full space-y-10 overflow-y-scroll' style={{height:"200vh"}}>
+      {isLoading?
+         <div className='w-full flex items-center justify-center'>
+             <ScaleLoader  color="#F62121" loading={isLoading} />
+  
+         </div>
+       :
+       <>
+      {result.length ===0?
+         <>
+           {bulletCollection?.map((ammo)=>{
+              return(
+                 <AmmoCard  ammo={ammo}/>
+  
+               )
+             })
+  
+           }
+         
+         </>
+  
+         :
+  
+         <>
+            {
+               result?.map((ammo)=>{
+                   return(
+                     <AmmoCard  ammo={ammo?.item}/>
+  
+                )
+  
+               })
+  
+  
+            }
+  
+         </>
+  
+      }
+      </>
+  
+      }
+  
+    </div>
+  
+    )
+  
 }

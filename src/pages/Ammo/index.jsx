@@ -82,6 +82,7 @@ const Banner=({setTitle})=>{
 
 export default function Ammo() {
     const [ammoCollection, setAmmoCollection] = useRecoilState(AmmosState)
+    const [bulletCollection,setBullet]= useState([])
     const [ammo, setAmmo] = useState({})
     const [isLoading,setLoading]=useState(true)
 
@@ -93,8 +94,12 @@ export default function Ammo() {
     useEffect(() => {
         const getCollections = async () => {
           const q = query(collection(db, "guns"));
+          const qB = query(collection(db, "ammos"));
+
           const querySnapshot = await getDocs(q);
+          const querySnapshotBullet = await getDocs(qB);
           const ammoList = []
+          const bulletList = []
           // console.log(querySnapshot)
           querySnapshot.docs.map((doc) => {
             // console.log(doc.data())
@@ -103,7 +108,16 @@ export default function Ammo() {
     
     
           })
+
+          querySnapshotBullet.docs.map((doc) => {
+            // console.log(doc.data())
+            bulletList.push({ ...doc.data(), id: doc.id })
+            setAmmo({ ...doc.data(), id: doc.id })
+    
+    
+          })
           setAmmoCollection( ammoList)
+          setBullet(bulletList)
 
           ammoList.length >0 && setLoading(false)
         }
@@ -112,12 +126,14 @@ export default function Ammo() {
     
 
   
-  const fuse =new Fuse(ammoCollection,{
+  const fuse =new Fuse([...ammoCollection,...bulletCollection],{
     keys:["name","actionType","manufacturer","price"]
   })
 
   const result=fuse.search(searchQuery)
   console.log(result,"result")
+  
+  console.log(bulletCollection,"bullet")
    
   return (
     <div className='w-full'>
@@ -138,7 +154,7 @@ export default function Ammo() {
           </main>
 
           <main className='lg:w-3/5 w-full lg:px-20 px-6'  > 
-             <Outlet context={[result,isLoading,ammoCollection]}/>
+             <Outlet context={[result,isLoading,ammoCollection,bulletCollection]}/>
 
           </main>
 
