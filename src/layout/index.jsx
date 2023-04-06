@@ -145,7 +145,11 @@ console.log(errors,"err")
             </div>
             
           <div className=" lg:py-32 py-20 h-full" >
+              <div className=' w-full'>
               {children}
+              </div>
+
+             
             </div>
   
             <div className='px-8 bg-color w-full h-28 ' style={{background:"#F62121"}}>
