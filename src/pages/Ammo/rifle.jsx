@@ -84,7 +84,7 @@ const AmmoCard=({ ammo})=>{
 export default function Rifle() {
  const [result,isLoading,ammoCollection,bulletCollection,rifleCollection]= useOutletContext();
 return (
-  <div className='flex flex-col w-full space-y-10 overflow-y-scroll' style={{height:"200vh"}}>
+  <div className='flex flex-col w-full space-y-10 overflow-y-scroll lg:overflow-y-scroll div-vh'>
   {isLoading?
      <div className='w-full flex items-center justify-center'>
          <ScaleLoader  color="#F62121" loading={isLoading} />

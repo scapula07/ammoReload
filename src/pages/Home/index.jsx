@@ -8,7 +8,7 @@ import gun from "../../assets/gun.png"
 import rifle from "../../assets/rifle.png"
 import ammo from "../../assets/ammo.png"
 import  bullet from "../../assets/bullet.png"
-import dealerPic from "../../assets/resultImg.png"
+import dealerPic from "../../assets/dealer.png"
 import {AiFillStar} from "react-icons/ai"
 import "./home.css"
 import Modal from '../../components/Modal'
@@ -140,7 +140,7 @@ const TopDealers=()=>{
                 <h5 className='lg:flex hidden'  style={{color: "#13505B"}}>See more {">>"}</h5>
            </div>
 
-           <div className='grid grid-flow-row lg:grid-cols-4 grid-cols-1 gap-y-8 lg:gap-y-0 gap-4 py-10'>
+           <div className='grid grid-flow-row lg:grid-cols-4 grid-cols-1 gap-y-8 lg:gap-y- gap-4 py-10'>
                         {[1,2,3,4,5,6,7,8].map(()=>{
                             return(
                                 <main className='h-72 flex flex-col  items-center  py-12 rounded-md' style={{background:" rgba(251, 248, 248, 1)"}} >

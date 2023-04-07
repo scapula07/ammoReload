@@ -14,6 +14,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import { AmmosState } from '../../Recoil/globalState'
 import { useRecoilState } from 'recoil'
 import { Link,Outlet } from 'react-router-dom'
+import "./ammo.css"
 
 
 const Banner=({setTitle})=>{
@@ -50,7 +51,7 @@ const Banner=({setTitle})=>{
     return(
       <div className='w-full flex lg:flex-row flex-col-reverse items-center lg:px-20 '>
           <main className='flex lg:flex-row flex-col items-center lg:w-3/5 w-full px-6 lg:px-0 lg:space-x-12 py-4 lg:py-0 space-y-4 lg:space-y-0'>
-              <div className='flex border items-center  lg:w-1/2 w-full px-4 py-2 rounded-md lg:space-x-4' style={{border: "1px solid #D4D4D8"}}>
+              <div className='flex border items-center  lg:w-1/2 w-full px-4 py-2 rounded-md lg:space-x-4 space-x-8' style={{border: "1px solid #D4D4D8"}}>
                 <BsSearch className='text-slate-500' />
                 <input placeholder='Start searching...'
                     value={searchQuery}

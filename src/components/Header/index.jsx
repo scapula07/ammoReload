@@ -10,6 +10,7 @@ import {BiMenu} from "react-icons/bi"
 
 export default function Header({setTrigger}) {
   const currentUser =useRecoilValue(AccountState)
+  const [nav,setNav]= useState("")
   console.log(currentUser?.email?.length,"header")
   const [trigger,setMenuTrigger]=useState(false)
 
@@ -30,10 +31,10 @@ export default function Header({setTrigger}) {
           </main>
           <main className='hidden  lg:flex text-color-sm text-lg font-normal items-center space-x-8'>
             <div className='flex items-center space-x-8'>
-                    <Link to="/dealers"><h5 className='text-base font-semibold'  style={{color:"#4F4F4F"}}>Dealers</h5></Link> 
-                    <Link to="/become-dealer"> <h5  className='text-base font-semibold'  style={{color:"#4F4F4F"}}>Become a dealer</h5></Link>
-                    <Link to="/ammos"> <h5 className='text-base font-semibold'  style={{color:"#4F4F4F"}}>Ammo</h5></Link>
-                    <Link to="/ratings"><h5 className='text-base font-semibold' style={{color:"#4F4F4F"}}>Rating</h5></Link>  
+                    <Link to="/dealers"><h5 className='text-base font-semibold hover:border-b-2 border-blue-900 '  style={{color:"#4F4F4F"}}>Dealers</h5></Link> 
+                    <Link to="/become-dealer"> <h5  className='text-base font-semibold hover:border-b-2 border-blue-900'  style={{color:"#4F4F4F"}}>Become a dealer</h5></Link>
+                    <Link to="/ammos"> <h5 className='text-base font-semibold hover:border-b-2 border-blue-900'  style={{color:"#4F4F4F"}}>Ammo</h5></Link>
+                    <Link to="/ratings"><h5 className='text-base font-semibold hover:border-b-2 border-blue-900' style={{color:"#4F4F4F"}}>Rating</h5></Link>  
                     <select className='outline-none border-0'>
                         <option value={"Support"}>
                         Support
