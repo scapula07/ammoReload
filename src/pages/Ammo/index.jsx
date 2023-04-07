@@ -87,6 +87,7 @@ const Banner=({setTitle})=>{
 export default function Ammo() {
     const [ammoCollection, setAmmoCollection] = useRecoilState(AmmosState)
     const [bulletCollection,setBullet]= useState([])
+    const [rifleCollection,setRifle]= useState([])
     const [ammo, setAmmo] = useState({})
     const [isLoading,setLoading]=useState(true)
 
@@ -99,11 +100,15 @@ export default function Ammo() {
         const getCollections = async () => {
           const q = query(collection(db, "guns"));
           const qB = query(collection(db, "ammos"));
+          const qR = query(collection(db, "rifles"));
 
           const querySnapshot = await getDocs(q);
           const querySnapshotBullet = await getDocs(qB);
+          const querySnapshotRifle = await getDocs(qR );
+
           const ammoList = []
           const bulletList = []
+          const rifleList = []
           // console.log(querySnapshot)
           querySnapshot.docs.map((doc) => {
             // console.log(doc.data())
@@ -120,9 +125,19 @@ export default function Ammo() {
     
     
           })
+
+
+          querySnapshotRifle.docs.map((doc) => {
+            // console.log(doc.data())
+            rifleList.push({ ...doc.data(), id: doc.id })
+            setAmmo({ ...doc.data(), id: doc.id })
+    
+    
+          })
           setAmmoCollection( ammoList)
           setBullet(bulletList)
-
+          setRifle(rifleList)
+           
           ammoList.length >0 && setLoading(false)
         }
         getCollections()
@@ -137,7 +152,7 @@ export default function Ammo() {
   const result=fuse.search(searchQuery)
   console.log(result,"result")
   
-  console.log(bulletCollection,"bullet")
+  console.log(rifleCollection,"rifle")
    
   return (
     <div className='w-full'>
@@ -158,7 +173,7 @@ export default function Ammo() {
           </main>
 
           <main className='lg:w-3/5 w-full lg:px-20 px-6'  > 
-             <Outlet context={[result,isLoading,ammoCollection,bulletCollection]}/>
+             <Outlet context={[result,isLoading,ammoCollection,bulletCollection,rifleCollection]}/>
 
           </main>
 
