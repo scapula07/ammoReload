@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import ammoImg from "../../assets/ammoHero.png"
 import {BsSearch} from "react-icons/bs"
 import Filter from './filter'
@@ -15,9 +15,21 @@ import { AmmosState } from '../../Recoil/globalState'
 import { useRecoilState } from 'recoil'
 import { Link,Outlet } from 'react-router-dom'
 import "./ammo.css"
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const Banner=({setTitle})=>{
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 4
+  };
+
+  const sliderRef=useRef()
     return(
       <div className='h-28 flex items-center lg:px-20 px-10'  style={{background:"#F62121"}} >
   
@@ -26,7 +38,8 @@ const Banner=({setTitle})=>{
             <select style={{background:"#F62121"}} >
             <option>All AMMO</option>
             </select>
-           
+       
+
            <Link to="handguns"> <h5 onClick={()=>setTitle("Handguns")}>HANDGUN</h5></Link>
            <Link to="rifles"> <h5 onClick={()=>setTitle("Rifles")}>RIFLE</h5></Link>
            <Link to="rimfire"><h5 onClick={()=>setTitle("Rimfire")}>RIMFIRE</h5></Link>
@@ -34,6 +47,8 @@ const Banner=({setTitle})=>{
            <Link to=""><h5 onClick={()=>setTitle("Guns")}>GUNS</h5></Link>
            <Link to="mags"> <h5 onClick={()=>setTitle("Magazines")}>MAGAZINES</h5></Link>
            <Link to="bullets"> <h5 onClick={()=>setTitle("Bullets")}>BULLETS</h5></Link>
+          
+
         </main>
         <main></main>
   
@@ -89,6 +104,7 @@ export default function Ammo() {
     const [ammoCollection, setAmmoCollection] = useRecoilState(AmmosState)
     const [bulletCollection,setBullet]= useState([])
     const [rifleCollection,setRifle]= useState([])
+    const [handgunCollection,setHandGun]= useState([])
     const [ammo, setAmmo] = useState({})
     const [isLoading,setLoading]=useState(true)
 
@@ -102,14 +118,19 @@ export default function Ammo() {
           const q = query(collection(db, "guns"));
           const qB = query(collection(db, "ammos"));
           const qR = query(collection(db, "rifles"));
+          const qH= query(collection(db, "handguns"));
+
 
           const querySnapshot = await getDocs(q);
           const querySnapshotBullet = await getDocs(qB);
           const querySnapshotRifle = await getDocs(qR );
+          const querySnapshotHandgun = await getDocs(qH );
+
 
           const ammoList = []
           const bulletList = []
           const rifleList = []
+          const handgunList = []
           // console.log(querySnapshot)
           querySnapshot.docs.map((doc) => {
             // console.log(doc.data())
@@ -135,10 +156,20 @@ export default function Ammo() {
     
     
           })
+
+          querySnapshotHandgun.docs.map((doc) => {
+            // console.log(doc.data())
+            handgunList.push({ ...doc.data(), id: doc.id })
+            setAmmo({ ...doc.data(), id: doc.id })
+    
+    
+          })
+
+
           setAmmoCollection( ammoList)
           setBullet(bulletList)
           setRifle(rifleList)
-           
+          setHandGun(handgunList)
           ammoList.length >0 && setLoading(false)
         }
         getCollections()
@@ -174,7 +205,7 @@ export default function Ammo() {
           </main>
 
           <main className='lg:w-3/5 w-full lg:px-20 px-6'  > 
-             <Outlet context={[result,isLoading,ammoCollection,bulletCollection,rifleCollection]}/>
+             <Outlet context={[result,isLoading,ammoCollection,bulletCollection,rifleCollection,handgunCollection]}/>
 
           </main>
 
