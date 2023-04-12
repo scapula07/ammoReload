@@ -140,11 +140,11 @@ console.log(errors,"err")
     return (
       <>
       <div className=" relative layout  w-screen    overflow-x-hidden h-full">
-            <div className='fixed w-full bg-white py-6 px-8 z-20 '>
+            <div className='fixed w-full bg-white lg:py-6 py-4 px-8 z-20 '>
               <Header setTrigger={setTrigger}/>
             </div>
             
-          <div className=" lg:py-32 py-20 h-full" >
+          <div className=" lg:py-32 py-18 h-full" >
               <div className=' w-full'>
               {children}
               </div>

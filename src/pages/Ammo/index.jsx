@@ -105,6 +105,7 @@ export default function Ammo() {
     const [bulletCollection,setBullet]= useState([])
     const [rifleCollection,setRifle]= useState([])
     const [handgunCollection,setHandGun]= useState([])
+    const [shotgunCollection,setShotGun]= useState([])
     const [ammo, setAmmo] = useState({})
     const [isLoading,setLoading]=useState(true)
 
@@ -119,18 +120,20 @@ export default function Ammo() {
           const qB = query(collection(db, "ammos"));
           const qR = query(collection(db, "rifles"));
           const qH= query(collection(db, "handguns"));
-
+          const qS= query(collection(db, "shotguns"));
 
           const querySnapshot = await getDocs(q);
           const querySnapshotBullet = await getDocs(qB);
           const querySnapshotRifle = await getDocs(qR );
           const querySnapshotHandgun = await getDocs(qH );
+          const querySnapshotShotgun = await getDocs(qS );
 
 
           const ammoList = []
           const bulletList = []
           const rifleList = []
           const handgunList = []
+          const shotGunList = []
           // console.log(querySnapshot)
           querySnapshot.docs.map((doc) => {
             // console.log(doc.data())
@@ -165,11 +168,21 @@ export default function Ammo() {
     
           })
 
+          querySnapshotShotgun.docs.map((doc) => {
+            // console.log(doc.data())
+            shotGunList.push({ ...doc.data(), id: doc.id })
+            setAmmo({ ...doc.data(), id: doc.id })
+    
+    
+          })
+
+
 
           setAmmoCollection( ammoList)
           setBullet(bulletList)
           setRifle(rifleList)
           setHandGun(handgunList)
+          setShotGun(shotGunList)
           ammoList.length >0 && setLoading(false)
         }
         getCollections()
@@ -205,7 +218,7 @@ export default function Ammo() {
           </main>
 
           <main className='lg:w-3/5 w-full lg:px-20 px-6'  > 
-             <Outlet context={[result,isLoading,ammoCollection,bulletCollection,rifleCollection,handgunCollection]}/>
+             <Outlet context={[result,isLoading,ammoCollection,bulletCollection,rifleCollection,handgunCollection,shotgunCollection]}/>
 
           </main>
 
